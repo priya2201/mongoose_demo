@@ -74,7 +74,7 @@ const pageSize=10;
     //     tags:1
     // })
     // .count()
-console.log(courses)
+// console.log(courses)
 
 
 
@@ -99,7 +99,16 @@ console.log(courses)
 //regular expressions
 
 }
-
-
-
 getCourses();
+
+async function updateCourses(id){
+let Course=mongoose.model('Course',courseSchema);
+const course=await Course.findById(id);
+if(!course) return;
+course.isPublished=true;
+course.author='sunanda'
+
+const result=await course.save()
+console.log(result)
+}
+updateCourses("63d0c2d73dc7cfe860a974ce");
